@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0b0d12">
+<title>MyFinds PH — Curated Finds</title>
+<style>
+:root{--bg:#f6f7f9;--surface:#fff;--ink:#101218;--muted:#6d7280;--line:#e7e9ee;--dark:#0b0d12;--accent:#7c5cff;--accent2:#a78bfa;--radius:22px;--shadow:0 18px 50px rgba(15,18,30,.08)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+a{text-decoration:none;color:inherit}button,input{font:inherit}.shell{max-width:1240px;margin:auto;padding:0 22px}
+.topbar{position:sticky;top:0;z-index:20;background:rgba(246,247,249,.86);backdrop-filter:blur(18px);border-bottom:1px solid rgba(231,233,238,.9)}
+.nav{height:74px;display:flex;align-items:center;gap:16px}.brand{display:flex;align-items:center;gap:10px;font-weight:950;font-size:20px;letter-spacing:-.6px}.mark{width:38px;height:38px;border-radius:12px;background:var(--dark);color:#fff;display:grid;place-items:center;font-weight:900}
+.searchbox{margin-left:auto;position:relative;width:min(430px,42vw)}.searchbox input{width:100%;height:44px;border:1px solid var(--line);background:#fff;border-radius:13px;padding:0 16px 0 42px;outline:0}.searchbox input:focus{border-color:#c9c0ff;box-shadow:0 0 0 4px #7c5cff18}.search-icon{position:absolute;left:15px;top:12px;color:#8a8f9d}
+.navlink{font-size:13px;color:var(--muted);font-weight:750}.navlink:hover{color:var(--ink)}
+.hero{margin:28px 0 22px;position:relative;overflow:hidden;background:var(--dark);color:#fff;border-radius:30px;min-height:340px;padding:56px;display:flex;align-items:flex-end;box-shadow:var(--shadow)}
+.hero:before,.hero:after{content:"";position:absolute;border-radius:999px;filter:blur(2px)}.hero:before{width:380px;height:380px;right:-90px;top:-150px;background:radial-gradient(circle,#8b5cf6 0,rgba(124,92,255,.1) 60%,transparent 70%)}.hero:after{width:280px;height:280px;right:180px;bottom:-180px;background:radial-gradient(circle,#22d3ee 0,transparent 68%);opacity:.55}
+.hero-content{position:relative;z-index:1;max-width:690px}.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:1.5px;color:#b9bdc8;font-weight:850;margin-bottom:12px}.hero h1{font-size:clamp(38px,6vw,72px);line-height:.95;letter-spacing:-3px;margin:0 0 18px}.hero p{margin:0;color:#cbd0da;font-size:17px;max-width:580px}.hero-actions{display:flex;gap:10px;margin-top:26px}.hero-btn{border:0;border-radius:12px;padding:12px 16px;font-weight:850;cursor:pointer}.hero-btn.primary{background:#fff;color:#111}.hero-btn.ghost{background:#ffffff12;color:#fff;border:1px solid #ffffff20}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:16px;margin:30px 0 14px}.section-head h2{margin:0;font-size:22px;letter-spacing:-.6px}.section-head p{margin:4px 0 0;color:var(--muted);font-size:13px}
+.chips{display:flex;gap:8px;overflow:auto;padding:2px 0 8px;scrollbar-width:none}.chips::-webkit-scrollbar{display:none}.chip{white-space:nowrap;border:1px solid var(--line);background:#fff;color:#4f5562;border-radius:999px;padding:9px 14px;font-weight:800;cursor:pointer}.chip:hover{border-color:#c9c0ff}.chip.active{background:var(--dark);border-color:var(--dark);color:#fff}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;padding-bottom:48px}.card{background:var(--surface);border:1px solid var(--line);border-radius:20px;overflow:hidden;transition:.2s transform,.2s box-shadow;box-shadow:0 5px 20px rgba(15,18,30,.035)}.card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}.pic{aspect-ratio:1;background:#f0f1f4;position:relative;overflow:hidden}.pic img{width:100%;height:100%;object-fit:cover;display:block}.badge{position:absolute;left:12px;top:12px;background:#111;color:#fff;padding:6px 8px;border-radius:8px;font-size:10px;font-weight:900;letter-spacing:.4px}.body{padding:15px}.category{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:#8a8f9d;font-weight:900}.name{font-weight:850;font-size:15px;line-height:1.25;min-height:38px;margin-top:5px}.rating{font-size:12px;color:#a06d00;margin-top:7px}.price-row{display:flex;align-items:baseline;gap:7px;margin-top:10px}.price{font-size:22px;font-weight:950;letter-spacing:-.7px}.old{text-decoration:line-through;color:#9aa0ab;font-size:12px}.buttons{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:13px}.btn{border:0;border-radius:9px;padding:9px 5px;background:#111;color:#fff;font-size:10px;font-weight:900;cursor:pointer}.btn.alt{background:#f0f1f4;color:#171923}.empty{grid-column:1/-1;padding:50px;text-align:center;color:var(--muted);background:#fff;border:1px dashed #dfe2e8;border-radius:20px}
+.footer{border-top:1px solid var(--line);padding:26px 0 38px;color:var(--muted);font-size:12px}.footer-row{display:flex;justify-content:space-between;gap:15px}
+@media(max-width:1000px){.grid{grid-template-columns:repeat(3,1fr)}.hero{padding:44px;min-height:320px}}
+@media(max-width:700px){.shell{padding:0 14px}.nav{height:66px;gap:10px}.brand span:last-child{display:none}.searchbox{width:auto;flex:1}.navlink{display:none}.hero{margin-top:16px;padding:30px 24px;min-height:360px;border-radius:24px}.hero h1{letter-spacing:-2px}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.card{border-radius:16px}.body{padding:11px}.buttons{grid-template-columns:1fr}.section-head{margin-top:22px}.footer-row{flex-direction:column}}
+</style>
+</head>
+<body>
+<header class="topbar"><div class="shell nav">
+  <a class="brand" href="index.html"><span class="mark">M</span><span id="logo">MyFinds PH</span></a>
+  <div class="searchbox"><span class="search-icon">⌕</span><input id="q" placeholder="Search finds, categories..." autocomplete="off"></div>
+  <a class="navlink" href="admin.html">Admin ↗</a>
+</div></header>
+
+<main class="shell">
+  <section class="hero">
+    <div class="hero-content">
+      <div class="eyebrow">Curated affiliate finds</div>
+      <h1 id="ht">Find it. Compare it. Shop it.</h1>
+      <p id="hs">Curated affiliate finds from Shopee, TikTok Shop and Lazada.</p>
+      <div class="hero-actions"><button class="hero-btn primary" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">Explore finds</button><button class="hero-btn ghost" onclick="document.getElementById('q').focus()">Search</button></div>
+    </div>
+  </section>
+
+  <div class="section-head" id="products"><div><h2>Latest finds</h2><p>Compare available marketplaces before you shop.</p></div></div>
+  <div class="chips" id="chips"></div>
+  <section class="grid" id="grid"></section>
+</main>
+
+<footer class="footer"><div class="shell footer-row"><span id="footName">MyFinds PH</span><span>Affiliate links may earn a commission.</span></div></footer>
+
+<script>
+const API_URL="PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE";
+let d={},cat="All";
+const $=x=>document.querySelector(x);
+const esc=x=>String(x??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));
+const money=(p)=>`${esc(p.Currency||"₱")}${Number(p.Price||0).toLocaleString()}`;
+async function load(){
+  try{
+    let u=new URL(API_URL);u.searchParams.set("action","store");
+    d=await fetch(u).then(r=>r.json());
+    let s=d.settings||{};
+    if(s.STORE_NAME){$("#logo").textContent=s.STORE_NAME;$("#footName").textContent=s.STORE_NAME}
+    if(s.HERO_TITLE)$("#ht").textContent=s.HERO_TITLE;
+    if(s.HERO_SUBTITLE)$("#hs").textContent=s.HERO_SUBTITLE;
+    renderChips();render();
+  }catch(e){$("#grid").innerHTML='<div class="empty"><b>Store is not connected yet.</b><br>Set your Google Apps Script Web App URL in index.html.</div>'}
+}
+function go(p,platform,url){
+  fetch(API_URL,{method:"POST",body:JSON.stringify({action:"track",product_id:p.Product_ID,product_name:p.Product_Name,platform,url,referrer:document.referrer,device:/Mobi/i.test(navigator.userAgent)?"Mobile":"Desktop",campaign:p.UTM_Campaign||""})}).catch(()=>{});
+  location.href=url;
+}
+function renderChips(){
+  let cs=["All",...(d.categories||[]).map(x=>x.Category_Name)];
+  $("#chips").innerHTML=cs.map(x=>`<button class="chip ${x===cat?"active":""}" onclick="cat=${JSON.stringify(x)};renderChips();render()">${esc(x)}</button>`).join("");
+}
+function render(){
+  let q=($("#q").value||"").toLowerCase().trim();
+  let ps=(d.products||[]).filter(p=>(cat==="All"||p.Category===cat)&&(`${p.Product_Name} ${p.Category} ${p.Short_Description} ${p.AI_Title||""}`.toLowerCase().includes(q)));
+  $("#grid").innerHTML=ps.map(p=>`<article class="card">
+    <div class="pic"><img loading="lazy" src="${esc(p.Image_URL||"https://via.placeholder.com/600x600?text=Product")}" alt="${esc(p.Product_Name)}">${p.Badge?`<span class="badge">${esc(p.Badge)}</span>`:""}</div>
+    <div class="body"><div class="category">${esc(p.Category||"Find")}</div><div class="name">${esc(p.AI_Title||p.Product_Name)}</div>
+    <div class="rating">${p.Rating?"★ "+esc(p.Rating):""}${p.Reviews?" · "+esc(p.Reviews)+" reviews":""}</div>
+    <div class="price-row"><span class="price">${money(p)}</span>${p.Old_Price?`<span class="old">${esc(p.Currency||"₱")}${Number(p.Old_Price).toLocaleString()}</span>`:""}</div>
+    <div class="buttons">${p.Shopee_Link?`<button class="btn" onclick='go(${JSON.stringify(p)},"Shopee",${JSON.stringify(p.Shopee_Link)})'>Shopee</button>`:""}${p.TikTok_Link?`<button class="btn" onclick='go(${JSON.stringify(p)},"TikTok Shop",${JSON.stringify(p.TikTok_Link)})'>TikTok</button>`:""}${p.Lazada_Link?`<button class="btn alt" onclick='go(${JSON.stringify(p)},"Lazada",${JSON.stringify(p.Lazada_Link)})'>Lazada</button>`:""}</div></div>
+  </article>`).join("")||'<div class="empty"><b>No finds found.</b><br>Try another keyword or category.</div>';
+}
+$("#q").addEventListener("input",render);
+load();
+</script>
+</body>
+</html>
