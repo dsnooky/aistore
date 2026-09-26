@@ -1,4 +1,0 @@
-Category_ID,Category_Name,Slug,Description,Image_URL,Status,Sort_Order
-C001,Electronics,electronics,Tech and gadgets,,active,1
-C002,Home,home,Home finds,,active,2
-C003,Beauty,beauty,Beauty finds,,active,3
